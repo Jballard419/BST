@@ -61,7 +61,7 @@ void linkedlist<T>::insert(const T val, node<T>* temp)
 }
 
 template <typename T>
-T linkedlist<T>pop()
+T linkedlist<T>::pop()
 {
 	node<T>* temp= m_top;
 	T value  =m_top->getvalue();
