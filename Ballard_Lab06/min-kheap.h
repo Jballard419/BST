@@ -1,6 +1,7 @@
 #ifndef K_heap_H
 #define K_heap_H
 #include <iostream>
+#include <math.h>
 
 template <typename T>
 class k_heap {
@@ -9,7 +10,7 @@ private:
 
   T* heap;
   int max_size;
-  int size
+  int size;
 
 public:
   k_heap (int k, int max_size ): k(k), size(0), max_size(max_size)
@@ -27,7 +28,7 @@ public:
 
   void insert(int location,  T value );
   void remove_node(T value);
-  bool remove_node(T value);
+
   void heapify_down(int location);
   void heapify_up(int location);
 
