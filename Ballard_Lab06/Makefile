@@ -1,5 +1,8 @@
-BST: main.o
-	g++ -g -std=c++11 main.o  -o BST
+Min_heap: main.o test.o
+	g++ -g -std=c++11 main.o  -o Min_heap
+	g++ -g -std=c++11 test.o  -o Test_bench
+test.o: test.cpp  binary_seach_tree.h min-kheap.h
+	g++ -g -std=c++11 -c test.cpp  binary_seach_tree.h min-kheap.h
 main.o: main.cpp  binary_seach_tree.h min-kheap.h
 	g++ -g -std=c++11 -c main.cpp  binary_seach_tree.h min-kheap.h
 min-kheap.o: min-kheap.h min-kheap.hpp
@@ -11,7 +14,7 @@ Linkedlist.o: linkedlist.h linkedlist.hpp
 node.o: node.h node.hpp
 	g++ -Wall -std=c++11 -c node.h
 clean:
-	rm *.o *.gch BST
+	rm *.o *.gch Min_heap Test_bench
 tar: clean
 	-mkdir Ballard_Lab05
 	cp * Ballard_Lab05

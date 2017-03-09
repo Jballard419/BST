@@ -15,6 +15,16 @@ void BST<T>::remove(T value)
   remove( value, root);
 
 }
+template <typename T>
+BST<T>::~BST()
+{
+  int j;
+  while(root != NULL)
+  {
+    j= deletemin();
+  }
+  return;
+}
 
 template <typename T>
 Binary_Node<T>* BST<T>::search (T value)
@@ -91,7 +101,7 @@ void BST<T>::remove(T value, Binary_Node<T>*  & tree)
 {
   if(tree == NULL)
   {
-    std::cout<< value <<" was not in the tree" << std::endl;
+  //  std::cout<< value <<" was not in the tree" << std::endl;
 
   }
   else if( value < tree->value)
@@ -103,6 +113,7 @@ void BST<T>::remove(T value, Binary_Node<T>*  & tree)
   }else if (tree->left_node != NULL && (tree->right_node != NULL))
   {
     tree->value = deletemin(tree-> right_node); //patch the hole
+    remove(value,tree);// checks for
   }else // one child
   {
     Binary_Node<T>* temp = tree;
@@ -110,7 +121,8 @@ void BST<T>::remove(T value, Binary_Node<T>*  & tree)
     {
       tree= temp->right_node;
     } else { tree=temp->left_node ; }// firgures out which child
-    delete temp; // destory the node
+    delete temp;
+    remove(value,tree); // destory the node
 
   }
 return;

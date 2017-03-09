@@ -1,10 +1,10 @@
-#include "min-kheap.h"
+
 template <typename T>
-void k_heap::heapify_down(int location)
+void k_heap<T>::heapify_down(int location)
 {
-  if((location>= floor(size/2)))
+  if((location>= floor(size/k)))
   { return;}
-  int child=eldestchild(int i);
+  int child=eldestchild(location);
   int lowest_kid=child;
   int i= 1;
   while(i < k)
@@ -29,9 +29,16 @@ void k_heap::heapify_down(int location)
 
 
 }
+template <typename T>
+k_heap<T>::~k_heap()
+{
+  delete(heap);
+  return;
+}
+
 
 template <typename T>
-void k_heap::insert( T value)
+void k_heap<T>::insert( T value)
 {
   int test=size;
   int adult=getparent(size);
@@ -53,7 +60,7 @@ void k_heap::insert( T value)
   return ;
 }
 template <typename T>
-void k_heap::heapify_up( int location)
+void k_heap<T>::heapify_up( int location)
 {
   if(location == 0){
     return;
@@ -76,38 +83,39 @@ void k_heap::heapify_up( int location)
   return ;
 }
 template <typename T>
-void k_heeap::remove_node_location(int i)
+void k_heap<T>::remove_node_location(int i)
 {
 
-    if(value== heap[i])
-    {
+
+
       size --;
+
       heap[i]=heap[size];
       heap[size] = -1;
 
 
-      if(i != 0)
+      if(i != 0 && i!=size)
       {
 
 
-      if( comparsion(heap[i], heap[getparent(i)])
+      if( comparsion(heap[i], heap[getparent(i)]))
       {
         heapify_up(i);
       }else
       {
           heapify_down(i);
-      }
+      };
     } else
     {
         heapify_down(i);
     }
 
-    }
+
 return;
 
 };
 template <typename T>
-void k_heap::remove_node(T val)
+void k_heap<T>::remove_node(T val)
 {
   int i = 0;
   while (i<size) {
@@ -124,42 +132,45 @@ void k_heap::remove_node(T val)
 
 };
 template <typename T>
-void k_heap::drake(T A[], int size): size(size)
+void k_heap<T>::drake(T A[], int size_new)
 {
+  size = size_new;
   for (int i = 0; i < size; i++) {
     heap[i]= A[i];
   };
-  for (int i = (floor(size/2) -1); i>-1; i--)
+  for (int i = (floor(size/k) -1); i>-1; i--)
   {
       heapify_down(i);
   }
 }
 
 template <typename T>
-void k_heap::deletemax()
+void k_heap<T>::deletemax()
 {
   int low_index= heap[0];
-  for (int i = (floor(size/2) ; i<size; i++)
+  for (int i = floor(size/k) ; i<size; i++)
   {
-      if(comparsion(heap[low_index], heap[i])
+      if(comparsion(heap[low_index], heap[i]))
       {
         low_index = i;
-      }
+      };
 
   }
   remove_node_location(low_index);
 }
 
 template <typename T>
-void k_heap::levelorder()
+void k_heap<T>::levelorder()
 {
-  int n = 1;
+  int temp = 1;
+  int help=0; // offset need to make it work
   for (int i = 0; i < size; i++) {
     std::cout << heap[i] << ' ';
-    if(i%n==0)
+    if((i- help)%temp==0)
     {
       std::cout << '\n';
-      n=n*k; // who needs cmath;
+      temp=temp*k;
+      help=i; // who needs cmath;
     }else if ( i % k ==0)
     {
       std::cout << " - ";

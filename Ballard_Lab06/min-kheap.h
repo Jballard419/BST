@@ -20,14 +20,15 @@ public:
   virtual ~k_heap ();
   // here to make a max k heap very quickly
   virtual bool comparsion( T x, T y){  return x<y;  }
-  int getparent(int i){return floor((i-1)/k);};
+  int getparent(int i){return i>0 ?floor((i-1)/k): -1;};
   int eldestchild(int i){return (k* i + 1); };
-  virtual void deletemin() {  bool test =remove_node(heap[0]);  };
+  virtual void deletemin() { remove_node(heap[0]);  };
 
 
 
-  void insert(int location,  T value );
+  void insert( T value );
   void remove_node(T value);
+  void remove_node_location(int i);
 
   void heapify_down(int location);
   void heapify_up(int location);
@@ -39,3 +40,4 @@ public:
 
 };
 #endif
+#include "min-kheap.hpp"
