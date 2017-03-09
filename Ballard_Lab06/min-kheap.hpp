@@ -41,8 +41,9 @@ template <typename T>
 void k_heap<T>::insert( T value)
 {
   int test=size;
+
   int adult=getparent(size);
-  while (adult>=0){
+  while (adult>=0 && test  != 0){
 
     if(comparsion(value , heap[adult])  )
     {
@@ -94,11 +95,11 @@ void k_heap<T>::remove_node_location(int i)
       heap[size] = -1;
 
 
-      if(i != 0 && i!=size)
+      if(i != 0)
       {
 
 
-      if( comparsion(heap[i], heap[getparent(i)]))
+      if( comparsion(heap[i], heap[getparent(i)]) )
       {
         heapify_up(i);
       }else
@@ -117,11 +118,28 @@ return;
 template <typename T>
 void k_heap<T>::remove_node(T val)
 {
+  if(val<heap[0]) {return;}
   int i = 0;
   while (i<size) {
     if ( val == heap [i])
     {
-      remove_node_location(i);
+      size --;
+      heap[i]=heap[size];
+      if(i==size){ return;}
+      if(i != 0)
+      {
+      if( comparsion(heap[i], heap[getparent(i)]) )
+      {
+        heapify_up(i);
+      }else
+      {
+          heapify_down(i);
+      };
+    } else
+    {
+        heapify_down(i);
+    }
+
         // shouldn't have to reset the loop;
 
     }else
@@ -148,13 +166,17 @@ template <typename T>
 void k_heap<T>::deletemax()
 {
   int low_index= heap[0];
-  for (int i = floor(size/k) ; i<size; i++)
+  for (int i = floor(size-2/k)+1 ; i<size; i++)
   {
       if(comparsion(heap[low_index], heap[i]))
       {
         low_index = i;
       };
 
+  }
+  if(low_index= size -1)
+  {
+    size --;
   }
   remove_node_location(low_index);
 }

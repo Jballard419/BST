@@ -20,9 +20,9 @@ public:
   virtual ~k_heap ();
   // here to make a max k heap very quickly
   virtual bool comparsion( T x, T y){  return x<y;  }
-  int getparent(int i){return i>0 ?floor((i-1)/k): -1;};
+  int getparent(int i){return floor((i-1)/k);};
   int eldestchild(int i){return (k* i + 1); };
-  virtual void deletemin() { remove_node(heap[0]);  };
+  virtual void deletemin() { remove_node_location(0);  };
 
 
 

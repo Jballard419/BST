@@ -62,15 +62,15 @@ int main(int argc, char const *argv[]) {
 
         if(x<0.1)
         {
-            //min_heap->deletemin();
-        }else if (x< 0.2)
+            min_heap->deletemin();
+        }else if (x<0.2)
         {
-            //min_heap->deletemax();
-        }else if (x<1) {
+            min_heap->deletemax();
+        }else if (x<.7) {
           min_heap->insert((rand() % (4*n) +1));
         }else
         {
-          //min_heap->remove_node((rand() % (4*n) +1));
+          min_heap->remove_node((rand() % (4*n) +1));
         }
 
       }
@@ -100,7 +100,7 @@ int main(int argc, char const *argv[]) {
 
     }
     delete(min_heap);
-    //delete(tree);
+    delete(tree);
     delete(randomnums);
 
   }
