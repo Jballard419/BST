@@ -11,8 +11,8 @@ void printMenu() //prints the options available to the user
 	std::cout<<"2) remove"<<std::endl;
 	std::cout<<"3) deletemin"<<std::endl;
   std::cout<<"4) deletemax"<<std::endl;
-  std::cout<<"6) levelorder"<<std::endl;
-	std::cout<<"8) Exit"<<std::endl;
+  std::cout<<"5) levelorder"<<std::endl;
+	std::cout<<"6) Exit"<<std::endl;
 
 
 }

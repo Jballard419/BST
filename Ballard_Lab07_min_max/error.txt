@@ -1,0 +1,4 @@
+g++ -g -std=c++11 -c main.cpp  min_max.h
+Makefile:4: recipe for target 'main.o' failed
+g++ -g -std=c++11 -c main.cpp  min_max.h
+Makefile:4: recipe for target 'main.o' failed

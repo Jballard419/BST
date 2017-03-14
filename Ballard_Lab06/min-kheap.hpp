@@ -9,7 +9,7 @@ void k_heap<T>::heapify_down(int location)
   int i= 1;
   while(i < k)
   {
-    if (child+i>= size) { break; /* empty node */ }
+    if ((child+i)>= size) { break; /* empty node */ };
 
     if(comparsion(heap[child+i], heap[lowest_kid] ))
       lowest_kid = child +i;
