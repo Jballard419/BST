@@ -1,0 +1,43 @@
+#ifndef LEFT_HEAP_H
+#define LEFT_HEAP_H
+#include <iostream>
+#include "linkedlist.h"
+
+
+
+template <typename T>
+struct Leftist_Node
+{
+  T value;
+  Leftist_Node *left_node;
+  Leftist_Node *right_node;
+  int rank;
+  Leftist_Node( const T & new_value, Leftist_Node *left, Leftist_Node *right, int r = 0 )
+  : value(new_value), left_node(left), right_node(right),rank(r) { }; // trying a different way to make a constructor
+
+};
+
+template <typename T>
+class Leftist_Heap
+{
+public:
+Leftist_Heap(): root(NULL){};
+~Leftist_Heap();
+void insert( T value);
+void deletemin();
+Leftist_Node<T>* merge(Leftist_Node<T>*  t1,Leftist_Node<T>* t2 );
+
+void preorder();
+void inorder();
+void levelorder();
+private:
+Leftist_Node<T>* root;
+
+void preorder(Leftist_Node<T>*  & tree);
+void inorder(Leftist_Node<T>*  & tree);
+
+
+};
+#include "leftist_heap.hpp"
+
+#endif

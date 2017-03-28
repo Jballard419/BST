@@ -22,10 +22,11 @@ class Skew_Heap
 {
 public:
 Skew_Heap(): root(NULL){};
+~Skew_Heap();
 void insert( T value);
 void deletemin();
-Skew_Node<T>* merge(Skew_Node *t1,Skew_Node *t2 );
-void swap(Skew_Node *t1,Skew_Node *t2 )
+Skew_Node<T>* merge(Skew_Node<T>* t1,Skew_Node<T>* t2 );
+void swap(Skew_Node<T>* t1,Skew_Node<T>* t2 )
 {
   Skew_Node<T>* temp= t1;
   t1 = t2;

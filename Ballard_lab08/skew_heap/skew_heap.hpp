@@ -1,27 +1,42 @@
 template <typename T>
-Skew_Node<T>* Skew_Heap<T>:: merge(Skew_Node *t1,Skew_Node *t2 )
+Skew_Heap<T>::~Skew_Heap()
+{
+  int j;
+  while(root != NULL)
+  {
+    j= deletemin();
+  }
+  return;
+}
+template <typename T>
+Skew_Node<T>* Skew_Heap<T>:: merge(Skew_Node<T>* t1,Skew_Node<T>* t2 )
 {
   if(t1==NULL)
     return t2;
   if(t2==NULL)
     return t1;
-  if(t1->value<t2->value)
-    swap(t1, t2);
+  if(t1->value>t2->value)
+  {
+    Skew_Node<T>* temp= t1;
+    t1 = t2;
+    t2 =temp;
+
+  }
 
     // now
     Skew_Node<T>* temp = t1->right_node;
     t1->right_node = t1->left_node;
-    t1->left_node = merge(temp, H2);
+    t1->left_node = merge(temp, t2);
     return t1;
 
 }
 
 template <typename T>
 void Skew_Heap<T>:: insert(T value)
-(
+{
   root= merge(root, new Skew_Node<T>(value, NULL, NULL));
 
-);
+};
 template <typename T>
 void Skew_Heap<T>:: deletemin()
 {
@@ -74,20 +89,27 @@ template <typename T>
 void Skew_Heap<T>::levelorder()
 {
   linkedlist<Skew_Node<T>*>* queue= new linkedlist<Skew_Node<T>*>();
-  queue->insert(root);// add root
+  queue->insert(root);
+  queue->insert(NULL);// add root
 
   while(!(queue->isEmpty()))
   {
     Skew_Node<T>* temp = queue->pop();
     if(temp != NULL)
     {
-      queue->insert(temp->left_node);
-      queue->insert(temp->right_node);
+      if(temp->left_node!=NULL)
+        queue->insert(temp->left_node);
+      if(temp->right_node != NULL)
+        queue->insert(temp->right_node);
+      //empty=false;
       std::cout << temp-> value << " ";
 
+    }else
+    {
+         std::cout << "\n" ;
+       if(!(queue->isEmpty()))
+        queue->insert(NULL);
     }
-
-
   }
 
 }

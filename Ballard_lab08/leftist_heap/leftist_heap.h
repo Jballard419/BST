@@ -22,10 +22,11 @@ class Leftist_Heap
 {
 public:
 Leftist_Heap(): root(NULL){};
+~Leftist_Heap();
 void insert( T value);
 void deletemin();
-Leftist_Node<T>* merge(Leftist_Node *t1,Leftist_Node *t2 );
-void swap(Leftist_Node *t1,Leftist_Node *t2 )
+Leftist_Node<T>* merge(Leftist_Node<T>*  t1,Leftist_Node<T>* t2 );
+void swap(Leftist_Node<T>* t1,Leftist_Node<T>* t2 )
 {
   Leftist_Node<T>* temp= t1;
   t1 = t2;
